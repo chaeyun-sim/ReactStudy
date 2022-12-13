@@ -4,6 +4,9 @@ import * as ReactDOMClient from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals.js';
 import NotificationList from './chapter_06/NotificationList.jsx'
+import Accommodate from './chapter_07/Accommodate.jsx'
+import ConfirmButton from './chapter_08/ConfirmButton.jsx';
+import LandingPage from './chapter_09/LandingPage.jsx';
 
 // ReactDOM.render은 react v18부터 사용하지 않는다.
 // ReactDOM.render(
@@ -16,7 +19,7 @@ import NotificationList from './chapter_06/NotificationList.jsx'
 const root = ReactDOMClient.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <NotificationList />
+    <LandingPage />
   </React.StrictMode>
 );
 
