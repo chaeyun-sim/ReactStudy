@@ -7,6 +7,10 @@ import NotificationList from './chapter_06/NotificationList.jsx'
 import Accommodate from './chapter_07/Accommodate.jsx'
 import ConfirmButton from './chapter_08/ConfirmButton.jsx';
 import LandingPage from './chapter_09/LandingPage.jsx';
+import AttendanceBook from './chapter_10/AttendanceBook.jsx';
+import SignUp from './chapter_11/SignUp.jsx';
+import Calculator from './chapter_12/Calculator.jsx';
+
 
 // ReactDOM.render은 react v18부터 사용하지 않는다.
 // ReactDOM.render(
@@ -19,7 +23,7 @@ import LandingPage from './chapter_09/LandingPage.jsx';
 const root = ReactDOMClient.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <LandingPage />
+    <Calculator />
   </React.StrictMode>
 );
 
