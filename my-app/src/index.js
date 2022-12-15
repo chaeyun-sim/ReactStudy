@@ -11,7 +11,9 @@ import reportWebVitals from './reportWebVitals.js';
 // import SignUp from './chapter_11/SignUp.jsx';
 // import Calculator from './chapter_12/Calculator.jsx';
 // import ProfileCard from './chapter_13/ProfileCard.jsx';
-import DarkOrLight from './chapter_14/DarkOrLight.jsx'
+// import DarkOrLight from './chapter_14/DarkOrLight.jsx'
+import MainPage from './practice/styled.jsx'
+import Blocks from './chapter_15/Blocks.jsx';
 
 // ReactDOM.render은 react v18부터 사용하지 않는다.
 // ReactDOM.render(
@@ -24,7 +26,7 @@ import DarkOrLight from './chapter_14/DarkOrLight.jsx'
 const root = ReactDOMClient.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <DarkOrLight />
+    <Blocks />
   </React.StrictMode>
 );
 
