@@ -9,7 +9,7 @@ import React, { Component } from "react";
 //     )
 // }
 
-class Contents extends Component {
+class ReacContent extends Component {
   render(){
     return (
       <article>
@@ -21,4 +21,4 @@ class Contents extends Component {
 }
 
 
-export default Contents;
+export default ReacContent;

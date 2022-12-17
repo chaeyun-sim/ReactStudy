@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 
-// function TOC(props) {
-//   const { data } = props;
-//     return (
-//       <nav>
-//         <ul>
-//           {data.map((content) => {
-//             return <li key={content.id}><a href={content.title}>{content.title}</a></li>
-//           })}
-//         </ul>
-//       </nav>
-//     )
-// }
-
 class TOC extends Component{
+  shoudComponentUpdate(newProps, newState){
+    console.log('===>TOC renter shoudComponentUpdate'
+        , newProps.data 
+        , this.props.data 
+    );
+    if(this.props.data === newProps.data){
+        return false;
+    }
+    return true;
+}
   render(){
     var lists=[ ];
     var data=this.props.data;
@@ -26,7 +23,7 @@ class TOC extends Component{
           this.props.onChangePage(e.target.dataset.id);
         }.bind(this)}>{data[i].title}</a>
       </li>);
-      i=i+1;
+      i = i + 1;
     }
     return(
       <nav>
