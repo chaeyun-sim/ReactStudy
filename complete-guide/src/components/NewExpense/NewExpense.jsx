@@ -10,6 +10,7 @@ const NewExpense = (props) => {
         };
         // console.log(expenseData)
         props.onAddExpense(expenseData);
+        console.log('NewExpense.jsx', expenseData)
     };
     
     return (
