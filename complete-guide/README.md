@@ -1,4 +1,4 @@
-<h1 class="center">Application for 'React - The Complete Guide' of Udemy</h1>
+<h1 align="center">Application for 'React - The Complete Guide' of Udemy</h1>
 
 # Getting Started with Create React App
 
