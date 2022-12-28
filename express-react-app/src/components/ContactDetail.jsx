@@ -12,6 +12,7 @@ class ContactDetail extends Component {
         this.handleToggle = this.handleToggle.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     };
 
     handleToggle() {
@@ -37,6 +38,15 @@ class ContactDetail extends Component {
     handleEdit(){
         this.props.onEdit(this.state.name, this.state.phone);
     };
+
+    handleKeyPress(event){
+        // if(event.charCode === 13){
+        //     this.handleToggle();
+        // }
+        if(event.key === 'Enter'){
+            this.handleToggle();
+        }
+    }
 
     render() {
         const details = (
@@ -64,6 +74,7 @@ class ContactDetail extends Component {
                         placeholder="phone"
                         value={this.state.phone}
                         onChange={this.handleChange}
+                        onKeyDown={this.handleKeyPress}
                     />
                 </p>    
             </div>
