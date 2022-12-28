@@ -32,6 +32,33 @@ class Contact extends Component {
         this.handleEdit = this.handleEdit.bind(this);
     };
 
+    static getDerivedStateFromProps(props, state){
+        const contactData = localStorage.contactData;
+
+        if (contactData === state.contactData) {
+            return {
+                contactData: JSON.parse(contactData)
+            };
+        };
+        return null;
+    };
+
+    // componentWillMount(){
+    //     const contactData = localStorage.contactData;
+
+    //     if(contactData){
+    //         this.setState({
+    //             contactData: JSON.parse(contactData)
+    //         })
+    //     }
+    // };
+
+    componentDidUpdate(prevProps, prevState){
+        if(JSON.stringify(prevState.contactData) !== JSON.stringify(this.state.contactData)){
+            localStorage.contactData = JSON.stringify(this.state.contactData);
+        }
+    }
+
     handleChange(event){
         this.setState({
             keyword: event.target.value
