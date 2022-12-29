@@ -9,16 +9,12 @@ const createWarning = (funcName) => {
 }
 
 class Control extends Component {
-    // constructor(props){
-    //     super(props);
-    // }
-
     render(){
         return(
             <div>
                 <button onClick={this.props.onPlus}>+</button>
                 <button onClick={this.props.onSubtract}>-</button>
-                <button onClick={this.props.onRandomColor}>Randomize Color</button>
+                <button onClick={this.props.onRandomizeColor}>Randomize Color</button>
             </div>
         );
     }
@@ -27,12 +23,13 @@ class Control extends Component {
 Control.propTypes = {
     onPlus: PropTypes.func,
     onSubtract: PropTypes.func,
-    onRandomColor: PropTypes.func,
+    onRandomizeColor: PropTypes.func,
 };
+
 Control.defaultProps = {
     onPlus : createWarning('onPlus'),
     onSubtract : createWarning('onSubtract'),
-    onRandomColor : createWarning('onRandomColor'),
+    onRandomizeColor : createWarning('onRandomizeColor'),
 };
 
 export default Control;

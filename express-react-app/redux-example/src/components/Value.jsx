@@ -1,11 +1,15 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 
-class Value extends Component {
-    constructor(props){
-        super(props);
-    }
+const propTypes = {
+    number: PropTypes.number
+};
 
+const defaultProps = {
+    number: -1
+};
+
+class Value extends Component {
     render(){
         return(
             <div>
@@ -15,11 +19,8 @@ class Value extends Component {
     }
 }
 
-Value.propTypes = {
-    number: PropTypes.number
-};
-Value.defaultProps = {
-    number: -1
-};
+Value.propTypes = propTypes;
+
+Value.defaultProps = defaultProps;
 
 export default Value;
