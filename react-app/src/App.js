@@ -13,7 +13,7 @@ class App extends Component {
 		this.max_content_id = 3;
 		this.state = {
 			mode: 'welcome',
-			selected_content_id: 2,
+			selected_content_id: 0,
 			subject: {title: 'WEB', sub:'World Wide Web!'},
       		welcome: {title: 'Welcome', desc :'Hello, React!!'},
 			contents: [

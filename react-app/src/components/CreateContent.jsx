@@ -15,7 +15,7 @@ class CreateContent extends Component {
         }.bind(this) }>
           <p><input type="text" name="title" placeholder="title"/></p>
           <p><textarea name="desc" placeholder="description"></textarea></p>
-          <p><input type="submit"/></p>
+          <p><input type="submit" value="Submit"></input></p>
         </form>
       </article>
     )
