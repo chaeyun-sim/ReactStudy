@@ -2,14 +2,23 @@ import React, { Component } from "react";
 
 class Control extends Component {
   render(){
-    console.log('Selected', this.props.selected)
+    console.log('Mode', this.props.modes)
     return (
       <ul style={{ listStyle:"none", display:"flex", padding: 0}}>
-				<li>
-          <a href="/create" onClick={function(e){
-          e.preventDefault();  //preventHandler로 하니까 페이지가 넘어가지 않는 오류가 생김.
-          this.props.onChangeMode('create');}.bind(this)}><button style={{ backgroundColor: 'limegreen', color:'white', border: 'none', borderRadius: '6px', padding: '5px', fontSize: "11px"}}>create</button></a>
-        </li>
+        <div>
+          {
+            (this.props.modes !== 'create')
+              ? (
+                  <li>
+                    <a href="/create" onClick={function(e){
+                    e.preventDefault();  //preventHandler로 하니까 페이지가 넘어가지 않는 오류가 생김.
+                    this.props.onChangeMode('create');}.bind(this)}><button style={{ backgroundColor: 'limegreen', color:'white', border: 'none', borderRadius: '6px', padding: '5px', fontSize: "11px"}}>create</button></a>
+                  </li>
+                )
+              : ""
+          }
+        </div>
+				
         <div>
           {
             (this.props.selected > 0)

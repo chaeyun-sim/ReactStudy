@@ -105,7 +105,7 @@ class App extends Component {
 				})}.bind(this)} data={this.state.contents}>
 			</TOC>
 			{this.getContent()}
-			<Control selected={this.state.selected_content_id} onChangeMode={function(_mode){
+			<Control selected={this.state.selected_content_id} modes={this.state.mode} onChangeMode={function(_mode){
 				if(_mode === 'delete'){
 					if(window.confirm('정말 삭제하시겠습니까?')){
 						var _contents = Array.from(this.state.contents)
@@ -128,7 +128,6 @@ class App extends Component {
 					})
 				}
 			}.bind(this)}></Control>
-	      	{/* <ReacContent title={_title} desc={_desc}></ReacContent> */}
 	    </div>
 	  );
 	}
