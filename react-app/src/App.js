@@ -89,11 +89,12 @@ class App extends Component {
 
 	render(){
 		// console.log(this.state.mode)
+		console.log(this.state.selected_content_id)
 
 	  return (
 	    <div className="App">
 	      	<Subject title={this.state.subject.title} sub={this.state.subject.sub} onChangePage={function(){
-				this.setState({mode: 'welcome'})
+				this.setState({mode: 'welcome', selected_content_id: 0})
 				}.bind(this)}>
 	    	</Subject>
 	      	<TOC onChangePage={function(id){
@@ -104,7 +105,7 @@ class App extends Component {
 				})}.bind(this)} data={this.state.contents}>
 			</TOC>
 			{this.getContent()}
-			<Control onChangeMode={function(_mode){
+			<Control selected={this.state.selected_content_id} onChangeMode={function(_mode){
 				if(_mode === 'delete'){
 					if(window.confirm('정말 삭제하시겠습니까?')){
 						var _contents = Array.from(this.state.contents)

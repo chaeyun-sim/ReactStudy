@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class Control extends Component {
   render(){
+    console.log('Selected', this.props.selected)
     return (
       <ul style={{ listStyle:"none", display:"flex", padding: 0}}>
 				<li>
@@ -11,7 +12,7 @@ class Control extends Component {
         </li>
         <div>
           {
-            (this.props.selected >= 1)
+            (this.props.selected > 0)
               ? (
                   <li>
                     <a href="/update" onClick={function(e){
@@ -25,7 +26,7 @@ class Control extends Component {
         </div>
         <div>
           {
-            (this.props.selected >= 1)
+            (this.props.selected > 0)
               ? (
                   <li>
                     <input type="button" value="delete" onClick={function(e){
