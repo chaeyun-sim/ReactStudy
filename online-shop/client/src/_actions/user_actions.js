@@ -28,8 +28,11 @@ export function loginUser(dataToSubmit){
 }
 
 export function auth(){
-    const request = axios.get(`${USER_SERVER}/auth`)
-    .then(response => response.data);
+    const request = axios.get(`${USER_SERVER}/auth`)   //여기서 에가 생김
+    .then((response) => {
+        response.data
+        // console.log("Response", response)
+    });
 
     return {
         type: AUTH_USER,

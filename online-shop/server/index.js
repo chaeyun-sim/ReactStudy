@@ -6,8 +6,8 @@ const cors = require('cors')
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
-const config = require("./config/key");
-const dev = require("./config/dev")
+// const config = require("./config/key");
+const config = require('./config/dev')
 
 // const mongoose = require("mongoose");
 // mongoose
@@ -16,7 +16,7 @@ const dev = require("./config/dev")
 //   .catch(err => console.error(err));
 
 const mongoose = require("mongoose");
-mongoose.connect(dev.mongoURI,
+const connect = mongoose.connect(config.mongoURI,
   {
     useNewUrlParser: true, useUnifiedTopology: true,
     useCreateIndex: true, useFindAndModify: false
@@ -39,7 +39,7 @@ app.use('/api/users', require('./routes/users'));
 
 //use this to show the image you have in node js server to client (react js)
 //https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
-app.use('/uploads', express.static('uploads'));
+app.use('/api/video', express.static('./routes/video'));
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
@@ -54,7 +54,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 6000
 
 app.listen(port, () => {
   console.log(`Server Listening on ${port}`)
