@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Typography, Button, Form, Input } from 'antd';
+import FileUpload from "../../utils/FileUpload";
+import styles from './UploadProductPage.module.css'
 
 const Countries = [
     {
@@ -50,12 +52,12 @@ function UploadProductPage() {
     }
 
     return (
-        <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <div className={styles.container}>
+            <div className={styles.title}>
                 <Typography.Title level={2}>여행 상품 업로드</Typography.Title>
             </div>
             <Form>
-                
+                <FileUpload />
                 <br />
                 <br />
                 <label>Title</label>
