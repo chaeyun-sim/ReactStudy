@@ -8,14 +8,11 @@ export default function (SpecificComponent, option, adminRoute = null) {
 
         let user = useSelector(state => state.user);
         const dispatch = useDispatch();
-        
-        console.log('client/hoc/auth.js -> ', auth())
 
         useEffect(() => {
             //To know my current status, send Auth request 
             dispatch(auth()).then(response => {
                 //Not Loggined in Status 
-                console.log(response)
                 if (!response.payload.isAuth) {
                     if (option) {
                         props.history.push('/login')
