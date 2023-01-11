@@ -38,8 +38,19 @@ router.post('/', (req, res) => {  //path을 /api/products로 주었음
 router.post('/products', (req, res) => {
     let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+    let findArg = {};
 
-    Product.find().populate("writer") // 이 사람에 대한 모든 정보를 가져올 수 있음
+    for(let key in req.body.filters){
+        // console.log("key", key)
+        if(req.body.filters[key].length > 0){
+            findArg[key] = req.body.filters[key]
+        }
+    }
+    
+    // console.log("findArg", findArg)
+
+    Product.find(findArg)
+    .populate("writer") // 이 사람에 대한 모든 정보를 가져올 수 있음
     .skip(skip)
     .limit(limit)
     .exec((err, productsInfo) => {

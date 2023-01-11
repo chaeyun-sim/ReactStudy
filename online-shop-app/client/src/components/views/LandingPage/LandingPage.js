@@ -5,13 +5,17 @@ import { Card, Icon, Col, Row } from "antd";
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Section/CheckBox';
-import { continents } from './Section/Data'
+import { continentsData } from './Section/Data'
 
 function LandingPage() {
     const [products, setProducts] = useState([]);
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(8);
     const [postSize, setPostSize] = useState(0);
+    const [filterState, setFilterState] = useState({
+        continents: [],
+        price: []
+    })
 
     useEffect(() => {
         let body = {
@@ -25,7 +29,6 @@ function LandingPage() {
         axios.post('/api/product/products', body)
         .then((result) => {
             if (result.data.success){
-                // console.log(result.data)
                 if(body.loadMore){
                     setProducts([...products, ...result.data.productsInfo])
                 } else {
@@ -50,14 +53,13 @@ function LandingPage() {
         setSkip(skipAddLimit);
     }
 
-    const renderCards = products.map((item, index) => {
-        // console.log(item)
+    const renderCards = products.map((product, index) => {
         return (
             <Col key={index} lg={6} md={8} xs={12}>
-                <Card cover={<ImageSlider images={item.images} className={styles.img}  />}>
+                <Card cover={<ImageSlider images={product.images} className={styles.img}  />}>
                     <Meta
-                        title={item.title}
-                        description={item.description}
+                        title={product.title}
+                        description={`$${product.price}`}
                         // price={item.price}
                     />
                 </Card>
@@ -65,13 +67,32 @@ function LandingPage() {
         )
     });
 
+    const showFilteredResults = (filters) => {
+        let body = {
+            skip: 0,
+            limit: limit,
+            filters: filters
+        }
+        getProducts(body);
+        setSkip(0);
+    };
+
+    const handleFilters = (filters, category) => {
+        const newFilters = {...filterState};
+        newFilters[category] = filters;
+
+        showFilteredResults(newFilters);
+        // 여기에 파라미터를 지정해주지 않으면 필터가 작동하지 않는다.
+        // console.log(newFilters)
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.title}>
                 <h2>Let's Travel Anywhere <Icon type="rocket" /> </h2>
             </div>
 
-            <CheckBox list={continents} />
+            <CheckBox list={continentsData} handleFilters={filter => handleFilters(filter, "continents")} />
 
             <Row gutter={[16, 16]}>
                 {renderCards}

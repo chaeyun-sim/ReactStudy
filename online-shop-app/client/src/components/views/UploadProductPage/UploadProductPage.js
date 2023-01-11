@@ -5,7 +5,7 @@ import styles from './UploadProductPage.module.css'
 import axios from "axios";
 
 
-const Countries = [
+const Continents = [
     {
         key: 1,
         value: 'Africa'
@@ -34,7 +34,7 @@ function UploadProductPage(props) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
-    const [country, setCountry] = useState("");
+    const [continentState, setContinentState] = useState("");
     const [images, setImages ] = useState([]);
 
     const TitleChangeHandler = (event) => {
@@ -50,18 +50,17 @@ function UploadProductPage(props) {
     }
 
     const CountriesChangeHandler = (event) => {
-        setCountry(event.currentTarget.value)
+        setContinentState(event.currentTarget.value)
     }
 
     const updateImages = (newImages) => {
         setImages(newImages);
-        // console.log(newImages);
     };
 
     const submitHandler = (event) => {
         event.preventDefault();  // 자동적으로 페이지가 리프레쉬되지 않게 설정
 
-        if (!title || !description || !price || !country || !images){
+        if (!title || !description || !price || !continentState || !images){
             return alert("모든 입력를 채워주세요.")
         }
 
@@ -70,7 +69,7 @@ function UploadProductPage(props) {
             title: title,
             description: description,
             price: price,
-            country: country,
+            continents: continentState,
             images: images,
         };
 
@@ -107,9 +106,9 @@ function UploadProductPage(props) {
                 <Input type="number" onChange={PriceChangeHandler} value={price} />
                 <br />
                 <br />
-                <select onChange={CountriesChangeHandler} value={country}>  {/* value에 값이 없으면 select가 실행되지 않는다.*/}
-                    {Countries.map(country => (
-                        <option key={country.key} value={country.key}>{country.value}</option>
+                <select onChange={CountriesChangeHandler} value={continentState}>  {/* value에 값이 없으면 select가 실행되지 않는다.*/}
+                    {Continents.map(continent => (
+                        <option key={continent.key} value={continent.key}>{continent.value}</option>
                     ))}
                 </select>
                 <br />

@@ -1,4 +1,4 @@
-const continents = [
+const continentsData = [
     {
         "_id": 1,
         "name" : "Africa"
@@ -24,5 +24,5 @@ const continents = [
 ];
 
 export {
-    continents
+    continentsData
 }
