@@ -4,6 +4,8 @@ import styles from './LandingPage.module.css'
 import { Card, Icon, Col, Row } from "antd";
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider';
+import CheckBox from './Section/CheckBox';
+import { continents } from './Section/Data'
 
 function LandingPage() {
     const [products, setProducts] = useState([]);
@@ -69,22 +71,17 @@ function LandingPage() {
                 <h2>Let's Travel Anywhere <Icon type="rocket" /> </h2>
             </div>
 
-            {/* {products.map((item) => {
+            <CheckBox list={continents} />
 
-            })}
-            <Card>
-                <Meta />
-            </Card>
-             */}
             <Row gutter={[16, 16]}>
                 {renderCards}
             </Row>
 
-             {
+            {
                 postSize >= limit && <div className={styles.button}>
                     <button onClick={loadMoreHandler}>더보기</button>
                 </div>
-             }
+            }
             
         </div>
     )
