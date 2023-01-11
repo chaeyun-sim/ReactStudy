@@ -35,5 +35,13 @@ router.post('/', (req, res) => {  //path을 /api/products로 주었음
     })
 });
 
+router.post('/products', (req, res) => {
+    Product.find().populate("writer") // 이 사람에 대한 모든 정보를 가져올 수 있음
+    .exec((err, productsInfo) => {
+        if(err) return res.status(400).json({ success: false, err})
+        return res.status(200).json({ success: true, productsInfo })
+    })
+})
+
 
 module.exports = router;
