@@ -15,20 +15,35 @@ function LandingPage() {
             skip: skip,
             limit: limit,
         };
+        getProducts(body);
+    }, []);
 
+    const getProducts = (body) => {
         axios.post('/api/product/products', body)
         .then((result) => {
             if (result.data.success){
                 // console.log(result.data)
-                setProducts(result.data.productsInfo)
+                if(body.loadMore){
+                    setProducts([...products, ...result.data.productsInfo])
+                } else {
+                    setProducts(result.data.productsInfo)
+                }
             } else {
                 alert("상품을 가져올 수 없습니다.")
             }
         })
-    }, []);
+    }
 
     const loadMoreHandler = () => {
+        let skipAddLimit = skip + limit;
 
+        let body = {
+            skip: skipAddLimit,
+            limit: limit,
+            loadMore: true,
+        };
+        getProducts(body);
+        setSkip(skipAddLimit);
     }
 
     const renderCards = products.map((item, index) => {
