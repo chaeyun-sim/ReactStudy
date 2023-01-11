@@ -9,6 +9,7 @@ function LandingPage() {
     const [products, setProducts] = useState([]);
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(8);
+    const [postSize, setPostSize] = useState(0);
 
     useEffect(() => {
         let body = {
@@ -28,6 +29,7 @@ function LandingPage() {
                 } else {
                     setProducts(result.data.productsInfo)
                 }
+                setPostSize(result.data.postSize)
             } else {
                 alert("상품을 가져올 수 없습니다.")
             }
@@ -78,9 +80,12 @@ function LandingPage() {
                 {renderCards}
             </Row>
 
-            <div className={styles.button}>
-                <button onClick={loadMoreHandler}>더보기</button>
-            </div>
+             {
+                postSize >= limit && <div className={styles.button}>
+                    <button onClick={loadMoreHandler}>더보기</button>
+                </div>
+             }
+            
         </div>
     )
 }
