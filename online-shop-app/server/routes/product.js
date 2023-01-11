@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer')
+const { Product } = require("../models/Product");
 
 //=================================
 //            Product
@@ -24,7 +25,15 @@ router.post ('/image' , (req, res) => {
         }
         return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
     })
-})
+});
+
+router.post('/', (req, res) => {  //path을 /api/products로 주었음
+    const newProduct = new Product(req.body);
+    newProduct.save((err) => {
+        if(err) return res.status(400).json({ success: false, err})
+        return res.status(200).json({ success: true})
+    })
+});
 
 
 module.exports = router;

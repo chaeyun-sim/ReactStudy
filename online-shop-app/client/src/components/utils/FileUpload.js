@@ -3,9 +3,8 @@ import Dropzone from "react-dropzone";
 import { Icon } from "antd";
 import styles from './FileUpload.module.css'
 import axios from 'axios';
-import { previewImage } from "antd/lib/upload/utils";
 
-function FileUpload(){
+function FileUpload(props){
     const [images, setImages] = useState([])
 
     const dropHandler = (files) => {
@@ -17,13 +16,22 @@ function FileUpload(){
 
         axios.post(`/api/product/image`, formData, config).then((result) => {
             if (result.data.success) {
-                setImages([...images, result.data.filePath])
+                setImages([...images, result.data.filePath]);
+                props.refreshFunction([...images, result.data.filePath])
             } else {
                 alert("파일 저장 실패")
             }
         }).catch((err) => {
             console.log(err);
         });
+    };
+
+    const imageDeleteHandler = (image) => {
+        const currentIndex = images.indexOf(image);
+        // console.log(currentIndex);
+        let newImages = [...images];
+        newImages.splice(currentIndex, 1);
+        setImages(newImages);
     };
 
     return (
@@ -41,8 +49,8 @@ function FileUpload(){
 
             <div className={styles.showImage}>
                 {images.map((item, index) => (
-                    <div key={index}>
-                        <img className={styles.imgs} src={`http://localhost:5000/${item}`} />
+                    <div key={index} onClick={() => imageDeleteHandler(item)}>
+                        <img className={styles.imgs} src={`http://localhost:5000/${item}`} alt={item.value} />
                     </div>
                 ))} 
             </div>
