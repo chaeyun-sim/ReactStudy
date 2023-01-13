@@ -1,0 +1,11 @@
+.error {
+    color: red;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.errorContainer {
+    margin: 2rem auto;
+    max-width: 40rem;
+    text-align: center;
+}
