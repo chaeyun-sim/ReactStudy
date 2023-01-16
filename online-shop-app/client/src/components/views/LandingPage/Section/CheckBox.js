@@ -31,7 +31,7 @@ const CheckBox = (props) => {
     return (
         <div>
             <Collapse defaultActiveKey={['1']}>
-                <Collapse.Panel header="This is checkbox">
+                <Collapse.Panel header="📍 Choose your destination">
                     {renderCheckboxLists()}
                 </Collapse.Panel>
             </Collapse>

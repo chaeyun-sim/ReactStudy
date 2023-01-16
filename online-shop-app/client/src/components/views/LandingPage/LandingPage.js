@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import styles from './LandingPage.module.css'
-import { Card, Icon, Col, Row } from "antd";
+import { Card, Icon, Col, Row, Button } from "antd";
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Section/CheckBox';
@@ -122,10 +122,13 @@ function LandingPage() {
             <Row gutter={[16, 16]}>
                 {renderCards}
             </Row>
+            <br></br>
 
             {
-                postSize >= limit && <div className={styles.button}>
-                    <button onClick={loadMoreHandler}>더보기</button>
+                postSize >= limit && <div className={styles.btndiv}>
+                        <Button className={styles.button} onClick={loadMoreHandler}>
+                            더보기
+                        </Button>
                 </div>
             }
             

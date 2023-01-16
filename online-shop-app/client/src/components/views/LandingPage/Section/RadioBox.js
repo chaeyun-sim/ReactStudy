@@ -23,7 +23,7 @@ function RadioBox(props){
     return (
         <div>
             <Collapse defaultActiveKey={['1']}>
-                <Collapse.Panel header="This is radio box">
+                <Collapse.Panel header="💰 Choose your Budget">
                     <RadioGroup onChange={handleChange} value={valueState}>
                         {renderRadioBox()}
                     </RadioGroup>

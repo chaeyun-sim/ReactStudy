@@ -26,7 +26,7 @@ const continentsData = [
 const priceData = [
     {
         "_id": 0,
-        "name": "Any",
+        "name": "All",
         "array" : [],
     }, {
         "_id": 1,
