@@ -5,7 +5,8 @@ import { Card, Icon, Col, Row } from "antd";
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Section/CheckBox';
-import { continentsData } from './Section/Data'
+import RadioBox from './Section/RadioBox';
+import { continentsData, priceData } from './Section/Data'
 
 function LandingPage() {
     const [products, setProducts] = useState([]);
@@ -77,13 +78,30 @@ function LandingPage() {
         setSkip(0);
     };
 
+    const handlePrice = (value) => {
+        const data = priceData;
+        let array = [];
+
+        for(let key in data){
+            if (data[key]._id === parseInt(value, 10)){
+                array = data[key].array;  //데이터의 array를 이 함수의 array에 추가
+            }
+        };
+
+        return array;
+    };
+
     const handleFilters = (filters, category) => {
         const newFilters = {...filterState};
-        newFilters[category] = filters;
+        newFilters[category] = filters;  // id값
+
+        if (category === "price"){
+            let priceValues = handlePrice(filters);  // [100~110] 이런거
+            newFilters[category] = priceValues;
+        }
 
         showFilteredResults(newFilters);
-        // 여기에 파라미터를 지정해주지 않으면 필터가 작동하지 않는다.
-        // console.log(newFilters)
+        setFilterState(newFilters)
     };
 
     return (
@@ -92,7 +110,14 @@ function LandingPage() {
                 <h2>Let's Travel Anywhere <Icon type="rocket" /> </h2>
             </div>
 
-            <CheckBox list={continentsData} handleFilters={filter => handleFilters(filter, "continents")} />
+            <Row gutter={[16, 16]}>
+                <Col lg={12} xs={24}>
+                    <CheckBox list={continentsData} handleFilters={filter => handleFilters(filter, "continents")} />
+                </Col>
+                <Col lg={12} xs={24}>
+                    <RadioBox list={priceData} handleFilters={filter => handleFilters(filter, "price")} />
+                </Col>
+            </Row>
 
             <Row gutter={[16, 16]}>
                 {renderCards}

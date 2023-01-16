@@ -41,13 +41,20 @@ router.post('/products', (req, res) => {
     let findArg = {};
 
     for(let key in req.body.filters){
-        // console.log("key", key)
         if(req.body.filters[key].length > 0){
-            findArg[key] = req.body.filters[key]
+            console.log(key)
+            if (key === "price"){
+                findArg[key] = {
+                    $gte: req.body.filters[key][0],  //gte : 이거보다 크거나 같은
+                    $lte: req.body.filters[key][1],  //lte : 이거보다 작거나 같은
+                }
+            } else {
+                findArg[key] = req.body.filters[key];
+            }
         }
     }
     
-    // console.log("findArg", findArg)
+    console.log("findArg", findArg)
 
     Product.find(findArg)
     .populate("writer") // 이 사람에 대한 모든 정보를 가져올 수 있음

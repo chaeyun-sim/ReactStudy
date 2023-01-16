@@ -31,7 +31,7 @@ const CheckBox = (props) => {
     return (
         <div>
             <Collapse defaultActiveKey={['1']}>
-                <Collapse.Panel header="This is panel header">
+                <Collapse.Panel header="This is checkbox">
                     {renderCheckboxLists()}
                 </Collapse.Panel>
             </Collapse>
