@@ -38,6 +38,7 @@ router.post('/', (req, res) => {  //path을 /api/products로 주었음
 router.post('/products', (req, res) => {
     let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+    let term = req.body.searchTerm;
     let findArg = {};
 
     for(let key in req.body.filters){
@@ -54,16 +55,30 @@ router.post('/products', (req, res) => {
         }
     }
     
-    console.log("findArg", findArg)
+    // console.log("findArg", findArg)
 
-    Product.find(findArg)
-    .populate("writer") // 이 사람에 대한 모든 정보를 가져올 수 있음
-    .skip(skip)
-    .limit(limit)
-    .exec((err, productsInfo) => {
-        if(err) return res.status(400).json({ success: false, err})
-        return res.status(200).json({ success: true, productsInfo, postSize: productsInfo.length })
-    })
+    if (term){
+        Product.find(findArg)
+        .find({ $text: { $search: term }}) // 텍스트의 일치유무 추가
+            .populate("writer") // 이 사람에 대한 모든 정보를 가져올 수 있음
+            .skip(skip)
+            .limit(limit)
+            .exec((err, productsInfo) => {
+                if(err) return res.status(400).json({ success: false, err})
+                return res.status(200).json({ success: true, productsInfo, postSize: productsInfo.length })
+            }
+        )
+    } else {
+        Product.find(findArg)
+            .populate("writer") // 이 사람에 대한 모든 정보를 가져올 수 있음
+            .skip(skip)
+            .limit(limit)
+            .exec((err, productsInfo) => {
+                if(err) return res.status(400).json({ success: false, err})
+                return res.status(200).json({ success: true, productsInfo, postSize: productsInfo.length })
+            }
+        )
+    }
 })
 
 

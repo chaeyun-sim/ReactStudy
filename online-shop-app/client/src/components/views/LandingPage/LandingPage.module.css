@@ -16,3 +16,9 @@
 .button {
     margin-top: 10px;
 }
+
+.searchdiv {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem auto;
+}

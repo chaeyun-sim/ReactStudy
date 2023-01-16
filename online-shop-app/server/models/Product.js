@@ -33,8 +33,19 @@ const productSchema = mongoose.Schema({
     views: {
         type: Number,
         default: 0,
+    },
+    
+}, { timestamps: true, collection: 'product' });
+
+productSchema.index({   // 어디서 중점적으로 키워드가 걸리는지 확인
+    title: 'text',
+    description: 'text',
+}, {
+    weights: { // 단어마다 중요도
+        title: 5, // 타이틀을 훨씬 중요하게 봄
+        description: 1,
     }
-}, { timestamps: true, collection: 'product' })
+});
 
 
 const Product = mongoose.model('Product', productSchema);
