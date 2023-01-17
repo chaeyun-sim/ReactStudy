@@ -11,7 +11,7 @@ const SearchFeature = (props) => {
 
     return (
         <Search
-            placeholder="Search..."
+            placeholder="Search your Destination..."
             onChange={searchHandler}
             value={searchTerm}
             style={{ width: 250, float: "right" }}

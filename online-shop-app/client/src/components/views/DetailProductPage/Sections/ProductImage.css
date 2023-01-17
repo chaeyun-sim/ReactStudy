@@ -1,0 +1,26 @@
+.image-gallery-thumbnail-image {
+    height: 50px;
+    object-fit: cover;
+}
+
+.image-gallery-slide {
+    height: 900px;
+}
+
+@media (width > 3072px){
+    .image-gallery-slide{
+        height: 900px;
+    }
+}
+
+@media (1500px <= width <= 3072px){
+    .image-gallery-swipe {
+        max-height: 50.2rem;
+    }
+}
+
+@media screen and (width < 1500px){
+    .image-gallery-slide {
+        height: 30.5rem;
+    }
+}

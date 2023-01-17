@@ -30,6 +30,7 @@
     "node": "^10.16.0",
     "npm": "^6.9.0",
     "react-dropzone": "^14.2.3",
+    "react-image-gallery": "^1.2.11",
     "react-redux": "^5.0.7",
     "saslprep": "^1.0.3",
     "supports-color": "^7.1.0"

@@ -79,7 +79,19 @@ router.post('/products', (req, res) => {
             }
         )
     }
-})
+});
 
+router.get('/product_by_id', (req, res) => { 
+    // id를 기준으로 데이터베이스에서 상품을 가져오기
+    let type = req.query.type;
+    // let productId = req.query.id;
+
+    Product.find({ _id: req.query.id })
+    .populate('writer')
+    .exec((err, product) => {
+        if(err) return res.status(400).json({ success: false, err})
+        return res.status(200).json({ success: true, product})
+    })
+});
 
 module.exports = router;

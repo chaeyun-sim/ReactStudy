@@ -59,7 +59,7 @@ function LandingPage() {
     const renderCards = products.map((product, index) => {
         return (
             <Col key={index} lg={6} md={8} xs={12}>
-                <Card cover={<ImageSlider images={product.images} className={styles.img}  />}>
+                <Card cover={<a href={`/product/${product._id}`}><ImageSlider images={product.images} className={styles.img}  /></a>}>
                     <Meta
                         title={product.title}
                         description={`$${product.price}`}
@@ -122,9 +122,14 @@ function LandingPage() {
 
     return (
         <div className={styles.container}>
+
+            {/* Title */}
+            
             <div className={styles.title}>
                 <h2>Let's Travel Anywhere <Icon type="rocket" /> </h2>
             </div>
+
+            {/* Filter */}
 
             <Row gutter={[16, 16]}>
                 <Col lg={12} xs={24}>
@@ -135,14 +140,20 @@ function LandingPage() {
                 </Col>
             </Row>
 
+            {/* Search */}
+
             <div className={styles.searchdiv}>
                 <SearchFeature refreshFunction={updateSearchTerm} />
             </div>
+
+            {/* Card */}
 
             <Row gutter={[16, 16]}>
                 {renderCards}
             </Row>
             <br/>
+
+            {/* Load More Button */}
 
             {
                 postSize >= limit && <div className={styles.btndiv}>
