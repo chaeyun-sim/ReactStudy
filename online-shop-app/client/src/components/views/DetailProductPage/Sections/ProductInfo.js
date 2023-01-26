@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Descriptions } from "antd";
 import styles from './ProductInfo.module.css'
-import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { addToCart } from '../../../../_actions/user_actions'
 

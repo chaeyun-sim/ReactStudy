@@ -22,7 +22,7 @@ const DetailProductPage = (props) => {
                 alert('상세 정보 가져오기를 실패했습니다.')
             }
         })
-    }, [])
+    }, [productId])
 
     const DirectionHandler = (directionValue) => {
         return (

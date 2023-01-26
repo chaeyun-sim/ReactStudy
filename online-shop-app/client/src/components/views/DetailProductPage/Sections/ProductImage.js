@@ -10,8 +10,8 @@ function ProductImage(props) {
         if (props.detail.images && props.detail.images.length > 0) {
             let images = [];
 
-            props.detail.images && props.detail.images.map(item => {
-                images.push({
+            props.detail.images && props.detail.images.map((item) => {
+                return images.push({  // 여기 return 붙임
                     original: `http://localhost:5000/${item}`,
                     thumbnail: `http://localhost:5000/${item}`
                 })
